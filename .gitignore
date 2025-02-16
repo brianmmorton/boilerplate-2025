@@ -1,0 +1,21 @@
+# Dependencies
+**/**/node_modules
+
+# Environment varibales
+**/**/.env*
+**/**/!.env*.example
+
+# Code coverage
+**/**/coverage
+
+# Builds
+**/**/dist
+
+# misc
+**/**/.DS_Store
+
+# Dev db data
+**/**/db
+
+# TypeScript
+**/**/build

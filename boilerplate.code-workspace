@@ -1,0 +1,15 @@
+{
+    "folders": [
+      {
+        "path": "apps/api"
+      },
+      {
+        "path": "apps/react-sdk"
+      }
+    ],
+    "settings": {
+      // "prettier.prettierPath": "./node_modules/prettier",
+      "editor.formatOnSave": true,
+      // "prettier.configPath": ".prettierrc"
+    }
+  }

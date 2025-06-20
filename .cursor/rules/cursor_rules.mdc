@@ -1,0 +1,55 @@
+---
+description: Guidelines for creating and maintaining Cursor rules to ensure consistency and effectiveness.
+globs: .cursor/rules/*.mdc
+alwaysApply: true
+---
+- Don't add unnecessary comments during code generation. Just add ones that are useful for explaining particularly complex code.
+- When making updates, consider updating @SCOUTSENSE_OVERVIEW.md to reflect the changes appropriately
+- Always assume the development server is running in a separate terminal for api and web. Api will be running on port 3030, and web on 4000.
+- To verify health of code generation, use npx tsc in apps/web, apps/api, or apps/marketing.
+- Do not run commands from the root of the project, each app has it's own package.json in apps/
+- If something currently does not follow the conventions outlined in these rules, leave it as is unless the prompt specifies that you are allowed to change it.
+- Do not add tests unless the task or prompt is explicity for the purpose of adding tests
+
+# API @apps/api
+- When writing api routes, use the Handler class defined in @Handler.ts. An example route is @project.handlers.ts
+- Use prisma for database queries. Use the prisma client in @prismaClient.ts
+- Always use relative imports
+- Attempt to parallelize items for best performance
+- Handle errors using @ApiError.ts
+- For longer work, set up a background worker if needed. @Worker.service.ts
+- Create files that use [handlerExportName].handler.ts convention for file naming, where handlerExportName is the name of the handler exported from the file
+- Only export one handler per file
+- Always use named exports
+- Never create raw express routes. Always use the Handler class and follow code conventions of it's usage to register a route. 
+- When creating a new Handler, ensure it is registered in @index.ts
+- When creating a new Handler, ensure it is registered in @handlers.ts
+- Use @Worker.service.ts to create async workers
+- Use @Scheduler.service.ts if needed to schedule tasks repeatedly
+- Create files in apps/api/src/services for highly reusable code that connects to separate services, like 3rd party apis or redis that need a utility wrapper for ease of use in codebase.
+- Create files in apps/api/src/utils for small reusable functions. Only add here if code will be used more than twice in codebase, otherwise add inline
+- Put constants in config, and attempt to not reach out of config to other places in the code base. This should be static config
+- When making api changes, verify that web is up to date with the changes
+
+# AI Workers
+- AI background workers exist in apps/api/src/workers like [example.worker.ts](mdc:apps/api/src/workers/example.worker.ts), where we conduct product research using langgraph and LLM's
+- Do not remove aspects of AI prompts that existed before. Assume that prompts are highly tuned for their function, and additions/changes should be made with deliberate consideration.
+
+# Mobile
+- Try to reduce rerenders by using zustand for state management with selectors
+- When making api requests, using @cache.ts to add and update items in the cache. Attempt to do this without custom updates to the cache.
+- If adding new functionality that requires a new model, add the type to apps/mobile/src/types and connect it to @cache.ts for usage in components.
+- Use selectors from cache to reduce rerenders
+- When using the @cache.ts, use useModel hook to select a given model with the properties you would like. The api is modelName is first argument, model id is second, and selector function is third.
+- Directory classifications:
+  - Routes: High level components defined for an entire route
+  - Containers: High level components rendering a set of lower level components and handling complex logic for a screen. Somewhat reusable. Maximum of 2 reuses before being moved to components
+  - Components: Highly reusable components
+
+# Deployment and Production services
+- api is deployed to fly.io, using @fly.toml and @Dockerfile for configuration
+- mobile is deployed via expo
+
+# User Interface
+- Always create modern, sleek, fast UI
+

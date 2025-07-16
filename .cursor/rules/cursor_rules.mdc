@@ -10,6 +10,7 @@ alwaysApply: true
 - Do not run commands from the root of the project, each app has it's own package.json in apps/
 - If something currently does not follow the conventions outlined in these rules, leave it as is unless the prompt specifies that you are allowed to change it.
 - Do not add tests unless the task or prompt is explicity for the purpose of adding tests
+- NEVER CREATE BARREL FILES like index.ts. Always use exact exports. Do no export default. Use named exports. Limit to 1 export per file for api routes, components, and hooks. For types and constants you can export more.
 
 # API @apps/api
 - When writing api routes, use the Handler class defined in @Handler.ts. An example route is @project.handlers.ts

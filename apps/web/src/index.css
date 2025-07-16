@@ -1,0 +1,441 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('./fonts.css');
+
+@layer base {
+  :root {
+    --background: 0 26% 98%;
+    --foreground: 345 8% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 329 52% 47%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Brand colors using your pink palette */
+    --brand-subtle: var(--pink-3);
+    --brand-ui: var(--pink-6);
+    --brand-solid: var(--pink-9);
+    --brand-text: var(--pink-11);
+    --brand-contrast: var(--pink-12);
+    
+    /* Status colors for consistent theming */
+    --status-active: 217 91% 60%;          /* Blue */
+    --status-active-bg: 214 95% 93%;
+    --status-investigating: 45 93% 47%;    /* Yellow */
+    --status-investigating-bg: 55 92% 95%;
+    --status-resolved: 142 76% 36%;        /* Green */
+    --status-resolved-bg: 138 76% 97%;
+    --status-dismissed: 0 84% 60%;         /* Red */
+    --status-dismissed-bg: 0 93% 94%;
+    
+    /* Severity levels */
+    --severity-low: 142 76% 36%;           /* Green */
+    --severity-low-bg: 138 76% 97%;
+    --severity-medium: 45 93% 47%;         /* Yellow */
+    --severity-medium-bg: 55 92% 95%;
+    --severity-high: 0 84% 60%;            /* Red */
+    --severity-high-bg: 0 93% 94%;
+    --severity-critical: 0 84% 60%;        /* Red */
+    --severity-critical-bg: 0 93% 94%;
+    
+    /* Info colors */
+    --info: 217 91% 60%;
+    --info-bg: 214 95% 93%;
+    --warning: 45 93% 47%;
+    --warning-bg: 55 92% 95%;
+    --success: 142 76% 36%;
+    --success-bg: 138 76% 97%;
+    
+    /* Neutral grays */
+    --neutral-50: 0 0% 98%;
+    --neutral-100: 240 5% 96%;
+    --neutral-200: 240 6% 90%;
+    --neutral-300: 240 5% 84%;
+    --neutral-400: 240 5% 65%;
+    --neutral-500: 240 4% 46%;
+    --neutral-600: 240 5% 34%;
+    --neutral-700: 240 5% 26%;
+    --neutral-800: 240 4% 16%;
+    --neutral-900: 240 6% 10%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Dark mode brand colors */
+    --brand-subtle: var(--pink-3);
+    --brand-ui: var(--pink-6);
+    --brand-solid: var(--pink-9);
+    --brand-text: var(--pink-11);
+    --brand-contrast: var(--pink-12);
+    
+    /* Dark mode status colors - adjusted for better contrast */
+    --status-active: 217 91% 60%;
+    --status-active-bg: 214 50% 25%;
+    --status-investigating: 45 93% 47%;
+    --status-investigating-bg: 55 50% 25%;
+    --status-resolved: 142 76% 36%;
+    --status-resolved-bg: 138 50% 25%;
+    --status-dismissed: 0 84% 60%;
+    --status-dismissed-bg: 0 50% 25%;
+    
+    /* Dark mode severity levels */
+    --severity-low: 142 76% 36%;
+    --severity-low-bg: 138 50% 25%;
+    --severity-medium: 45 93% 47%;
+    --severity-medium-bg: 55 50% 25%;
+    --severity-high: 0 84% 60%;
+    --severity-high-bg: 0 50% 25%;
+    --severity-critical: 0 84% 60%;
+    --severity-critical-bg: 0 50% 25%;
+    
+    /* Dark mode info colors */
+    --info: 217 91% 60%;
+    --info-bg: 214 50% 25%;
+    --warning: 45 93% 47%;
+    --warning-bg: 55 50% 25%;
+    --success: 142 76% 36%;
+    --success-bg: 138 50% 25%;
+  }
+
+  h1 {
+    @apply text-3xl font-bold text-foreground;
+  }
+  
+  h2 {
+    @apply text-2xl font-semibold text-foreground;
+  }
+  
+  h3 {
+    @apply text-xl font-semibold text-foreground;
+  }
+  
+  h4 {
+    @apply text-lg font-medium text-foreground;
+  }
+  
+  h5 {
+    @apply text-base font-medium text-foreground;
+  }
+  
+  h6 {
+    @apply text-sm font-medium text-foreground;
+  }
+  
+  /* Semantic component classes */
+  .btn-brand {
+    @apply bg-brand-solid text-white hover:bg-pink-10 focus:ring-pink-7;
+  }
+  
+  .text-brand {
+    color: var(--brand-text);
+  }
+  
+  .bg-brand-subtle {
+    background-color: var(--brand-subtle);
+  }
+  
+  .border-brand {
+    border-color: var(--brand-ui);
+  }
+  
+  /* Info utility classes */
+  .info {
+    background-color: hsl(var(--info-bg));
+    color: hsl(var(--info));
+    border-color: hsl(var(--info) / 0.3);
+  }
+  
+  .warning {
+    background-color: hsl(var(--warning-bg));
+    color: hsl(var(--warning));
+    border-color: hsl(var(--warning) / 0.3);
+  }
+  
+  .success {
+    background-color: hsl(var(--success-bg));
+    color: hsl(var(--success));
+    border-color: hsl(var(--success) / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom background color for main content area */
+.bg-blue-gray-50 {
+  background-color: #f8fafc; /* Very light blue-gray */
+}
+
+/* Alternative options if you want a slightly different shade */
+.bg-blue-gray-100 {
+  background-color: #f1f5f9; /* Light blue-gray */
+}
+
+.bg-blue-gray-200 {
+  background-color: #e2e8f0; /* Slightly darker blue-gray */
+}
+
+.bg-black-600 {
+  background-color: #2e323b; /* Dark gray */
+}
+
+.bg-black-700 {
+  background-color: #202831; /* Darker gray */
+}
+
+.bg-background {
+  background: linear-gradient(to right, #fefbfd, #fffcf9);
+}
+
+.bg-card {
+  background: #ffffff87;
+}
+
+/* Override common text colors with warmer alternatives */
+.text-gray-500 {
+  color: #6f6f6f !important;
+}
+
+.text-gray-600 {
+  color: #6d6d6d !important; /* Secondary text color */
+}
+
+.text-gray-700 {
+  color: #454545 !important;
+}
+
+.text-gray-800 {
+  color: #373737 !important; /* Strong text color */
+}
+
+.text-gray-900 {
+  color: #222222 !important; /* Strongest text color */
+}
+
+:root,
+.light,
+.light-theme,
+.radix-themes {
+  --color-background: #fff;
+}
+
+.dark,
+.dark-theme,
+:is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
+  --color-background: #0f0f0f;
+}
+
+:root,
+.light,
+.light-theme {
+  --pink-1: #fffcfd;
+  --pink-2: #fff7fa;
+  --pink-3: #ffe9f2;
+  --pink-4: #fedbe9;
+  --pink-5: #facedf;
+  --pink-6: #f3bed4;
+  --pink-7: #ebabc6;
+  --pink-8: #e292b5;
+  --pink-9: #dd3c92;
+  --pink-10: #cd2e85;
+  --pink-11: #c5247f;
+  --pink-12: #661240;
+
+  --pink-a1: #ff005503;
+  --pink-a2: #ff006008;
+  --pink-a3: #ff006916;
+  --pink-a4: #f8006424;
+  --pink-a5: #e5005931;
+  --pink-a6: #d0005741;
+  --pink-a7: #c3005254;
+  --pink-a8: #bc00526d;
+  --pink-a9: #d30071c3;
+  --pink-a10: #c2006ad1;
+  --pink-a11: #bc006adb;
+  --pink-a12: #5a0032ed;
+
+  --pink-contrast: #fff;
+  --pink-surface: #fff5f9cc;
+  --pink-indicator: #dd3c92;
+  --pink-track: #dd3c92;
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+
+    :root,
+    .light,
+    .light-theme {
+      --pink-1: oklch(99.4% 0.0038 352.4);
+      --pink-2: oklch(98.3% 0.009 352.4);
+      --pink-3: oklch(95.4% 0.0271 352.4);
+      --pink-4: oklch(92.5% 0.0416 352.4);
+      --pink-5: oklch(89.3% 0.0542 352.4);
+      --pink-6: oklch(85.5% 0.0664 352.4);
+      --pink-7: oklch(80.9% 0.0821 352.4);
+      --pink-8: oklch(75.1% 0.1048 352.4);
+      --pink-9: oklch(61.9% 0.2106 352.4);
+      --pink-10: oklch(57.7% 0.2077 352.4);
+      --pink-11: oklch(55.5% 0.2077 352.4);
+      --pink-12: oklch(34.7% 0.1248 352.4);
+
+      --pink-a1: color(display-p3 0.6745 0.0235 0.349 / 0.012);
+      --pink-a2: color(display-p3 0.8784 0.0196 0.3882 / 0.032);
+      --pink-a3: color(display-p3 0.8118 0.0078 0.3882 / 0.083);
+      --pink-a4: color(display-p3 0.8039 0.0078 0.349 / 0.138);
+      --pink-a5: color(display-p3 0.749 0.0039 0.302 / 0.185);
+      --pink-a6: color(display-p3 0.6863 0.0039 0.3059 / 0.248);
+      --pink-a7: color(display-p3 0.6314 0.0039 0.2863 / 0.318);
+      --pink-a8: color(display-p3 0.6196 0.0039 0.2863 / 0.412);
+      --pink-a9: color(display-p3 0.7176 0 0.3882 / 0.71);
+      --pink-a10: color(display-p3 0.6588 0 0.3608 / 0.761);
+      --pink-a11: color(display-p3 0.6353 0 0.3569 / 0.793);
+      --pink-a12: color(display-p3 0.2941 0 0.1608 / 0.899);
+
+      --pink-contrast: #fff;
+      --pink-surface: color(display-p3 0.9922 0.9608 0.9765 / 0.8);
+      --pink-indicator: oklch(61.9% 0.2106 352.4);
+      --pink-track: oklch(61.9% 0.2106 352.4);
+    }
+  }
+}
+
+.dark,
+.dark-theme {
+  --pink-1: #150c0f;
+  --pink-2: #211117;
+  --pink-3: #3c1024;
+  --pink-4: #53032e;
+  --pink-5: #630839;
+  --pink-6: #751846;
+  --pink-7: #8f2759;
+  --pink-8: #ba3274;
+  --pink-9: #b93173;
+  --pink-10: #9d3465;
+  --pink-11: #ff88be;
+  --pink-12: #ffcfe3;
+
+  --pink-a1: #ea001007;
+  --pink-a2: #f5297514;
+  --pink-a3: #ff157f30;
+  --pink-a4: #fd007c49;
+  --pink-a5: #fd00865a;
+  --pink-a6: #fd248f6d;
+  --pink-a7: #ff3c9a88;
+  --pink-a8: #ff419db6;
+  --pink-a9: #ff3f9cb5;
+  --pink-a10: #ff4ea197;
+  --pink-a11: #ff88be;
+  --pink-a12: #ffcfe3;
+
+  --pink-contrast: #fff;
+  --pink-surface: #33131f80;
+  --pink-indicator: #b93173;
+  --pink-track: #b93173;
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+
+    .dark,
+    .dark-theme {
+      --pink-1: oklch(16.8% 0.0176 355.5);
+      --pink-2: oklch(20.3% 0.0273 355.5);
+      --pink-3: oklch(25.4% 0.0728 355.5);
+      --pink-4: oklch(29.2% 0.1156 355.5);
+      --pink-5: oklch(33.2% 0.1277 355.5);
+      --pink-6: oklch(38.2% 0.133 355.5);
+      --pink-7: oklch(45% 0.1468 355.5);
+      --pink-8: oklch(54.2% 0.1811 355.5);
+      --pink-9: oklch(54% 0.1811 355.5);
+      --pink-10: oklch(49.3% 0.1468 355.5);
+      --pink-11: oklch(78.7% 0.1811 355.5);
+      --pink-12: oklch(90.9% 0.0663 355.5);
+
+      --pink-a1: color(display-p3 0.9961 0 0.0588 / 0.021);
+      --pink-a2: color(display-p3 0.9961 0.2353 0.5294 / 0.067);
+      --pink-a3: color(display-p3 1 0.1529 0.5294 / 0.167);
+      --pink-a4: color(display-p3 1 0.0118 0.5294 / 0.25);
+      --pink-a5: color(display-p3 1 0.1098 0.5725 / 0.313);
+      --pink-a6: color(display-p3 1 0.2353 0.6118 / 0.384);
+      --pink-a7: color(display-p3 1 0.3137 0.6431 / 0.488);
+      --pink-a8: color(display-p3 1 0.3373 0.6588 / 0.65);
+      --pink-a9: color(display-p3 1 0.3333 0.6549 / 0.646);
+      --pink-a10: color(display-p3 1 0.3765 0.6745 / 0.542);
+      --pink-a11: color(display-p3 1 0.5922 0.7843 / 0.934);
+      --pink-a12: color(display-p3 1 0.8471 0.9176 / 0.967);
+
+      --pink-contrast: #fff;
+      --pink-surface: color(display-p3 0.1725 0.0784 0.1176 / 0.5);
+      --pink-indicator: oklch(54% 0.1811 355.5);
+      --pink-track: oklch(54% 0.1811 355.5);
+    }
+  }
+}
